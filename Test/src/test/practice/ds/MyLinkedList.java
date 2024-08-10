@@ -68,7 +68,11 @@ public class MyLinkedList {
 
         Node middleNodeApproach2 = myList.getMiddleNodeApproach2(myList);
         System.out.println("middleNodeApproach2 = " + middleNodeApproach2.data);
-                
+
+        Node myRevLinkedList = myList.reverseLinkedList(myList);
+        System.out.println("Printing rev linked list values");
+        myList.printList(myRevLinkedList);
+
     }
 
     /* In this approach we use slow and fast pointers concept it means 
@@ -84,5 +88,33 @@ public class MyLinkedList {
         }
         return slowPointer;
 
+    }
+    /*
+   1. Initialize three pointers prev as NULL, curr as head, and next as NULL.
+2. Iterate through the linked list. In a loop, do the following:
+    a.  Store the next node, next = curr -> next
+    b.  Update the next pointer of curr to prev, curr -> next = prev
+    c.  Update prev as curr and curr as next, prev = curr and curr = next
+     */
+    public Node reverseLinkedList(MyLinkedList list) {
+        Node currentNode, prevNode, nextNode;
+        // initializing currentNode, PrevNode, Next node with starting node head;
+        currentNode = list.head;
+        prevNode = null;
+        while (currentNode != null) {
+            nextNode = currentNode.next;
+            currentNode.next = prevNode;
+            prevNode = currentNode;
+            currentNode = nextNode;
+        }
+
+        return prevNode;
+    }
+
+    public static void printList(Node node) {
+        while (node != null) {
+            System.out.print(" " + node.data);
+            node = node.next;
+        }
     }
 }
