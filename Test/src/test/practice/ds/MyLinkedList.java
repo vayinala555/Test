@@ -30,20 +30,40 @@ public class MyLinkedList {
 		}
 
 	}
-	
+
+	public Node getMiddleNode(MyLinkedList list) {
+		Node currentNode = list.head;
+		if(currentNode.next == null) {
+			return currentNode;
+		}
+		else {
+			int counter = 1;
+			Node middleNode = list.head;
+			while (head != null) {
+				if (counter % 2 == 0) {
+					middleNode = middleNode.next;
+				}
+				head = head.next;
+				counter++;
+
+			}
+			return middleNode;
+		}
+	}
 	public static void main(String[] args) {
 		MyLinkedList myList = new MyLinkedList();
 		myList.insert(myList, "1");
 		myList.insert(myList, "2");
 		myList.insert(myList, "3");
 		myList.insert(myList, "4");
+		myList.insert(myList, "5");
+		myList.insert(myList, "6");
 
 		System.out.println(myList);
 		
 		// displaying values
 		myList.getValues(myList);
+		System.out.println(" middle node value is "+myList.getMiddleNode(myList).data);
 	}
-	
-	
 
 }
