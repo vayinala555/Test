@@ -73,6 +73,29 @@ public class MyLinkedList {
         System.out.println("Printing rev linked list values");
         myList.printList(myRevLinkedList);
 
+
+        // detecting loop
+        Node newNode = new Node("10");
+        newNode.next = new Node ("20");
+        newNode.next.next = new Node("30");
+        newNode.next.next.next=new Node("40");
+        newNode.next.next.next.next=new Node("50");
+        newNode.next.next.next.next.next = newNode.next.next;
+        System.out.println("Printing new list values");
+        detectLoopExistedOrNot(newNode);
+
+    }
+
+    private static void detectLoopExistedOrNot(Node newNode) {
+        Node slowPointerNode = newNode;
+        Node fastPointerNode = newNode.next.next;
+        int iterationCounter =1;
+        while (slowPointerNode != fastPointerNode) {
+            slowPointerNode = slowPointerNode.next;
+            fastPointerNode = fastPointerNode.next.next;
+            iterationCounter++;
+        }
+        System.out.println("Loop Detected after "+iterationCounter+ " iteration and the loop found at " + slowPointerNode.next.data);
     }
 
     /* In this approach we use slow and fast pointers concept it means 
